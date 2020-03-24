@@ -1,12 +1,42 @@
 import React from "react";
-import { Table, Popconfirm, message } from "antd";
+import { Table, Modal, message } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { withRouter } from "react-router-dom";
 
 class CaseTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dataSource: []
+      dataSource: [
+        {
+          academic_program: "Ingeniería de Sistemas y Computación",
+          date_stamp: "24/03/2019",
+          pbm: "15",
+          city: "La guajira",
+          socioeconomic_support: "Ipad + TV 80'' + MacBookPro"
+        },
+        {
+          academic_program: "Ingeniería Agrícola",
+          date_stamp: "23/03/2019",
+          pbm: "90",
+          city: "Bogotá D.C.",
+          socioeconomic_support: "Una mantecada, por favor."
+        },
+        {
+          academic_program: "Ingeniería Mecatrónica",
+          date_stamp: "22/03/2019",
+          pbm: "30",
+          city: "Soacha",
+          socioeconomic_support: "Almuerzo durante todos los días"
+        },
+        {
+          academic_program: "Ingeniería Industrial",
+          date_stamp: "21/03/2019",
+          pbm: "40",
+          city: "Tocancipá",
+          socioeconomic_support: "Internet."
+        }
+      ]
     };
   }
   confirmCancel = archiveType => {
@@ -40,13 +70,17 @@ class CaseTable extends React.Component {
         dataIndex: "date_stamp",
         key: "date_stamp"
       },
-      { title: "PBM", dataIndex: "date", key: "date", width: "10%" },
+      { title: "PBM", dataIndex: "pbm", key: "pbm", width: "10%" },
       {
         title: "Ciudad de procedencia",
-        dataIndex: "consecutive_minute",
-        key: "consecutive_minute"
+        dataIndex: "city",
+        key: "city"
       },
-      { title: "Tipo de apoyo solicitado", dataIndex: "year", key: "year" },
+      {
+        title: "Tipo de apoyo solicitado",
+        dataIndex: "socioeconomic_support",
+        key: "socioeconomic_support"
+      },
       {
         title: "Apadrinar",
         key: "edit",
@@ -56,9 +90,20 @@ class CaseTable extends React.Component {
             {/* eslint-disable-next-line */}
             <a
               onClick={() =>
-                this.props.history.push({
-                  pathname: "/edit/" + record.id,
-                  state: { _cls: record._cls }
+                Modal.confirm({
+                  title: "¿Está seguro que desea apadrinar a este estudiante?",
+                  icon: <ExclamationCircleOutlined />,
+                  content:
+                    "Al apadrinar a un estudiante, tanto a él como a usted les llegará una notificación por correo electrónico confirmando que el apadrinamiento fue efectivo.",
+                  okText: "Sí",
+                  okType: "primary",
+                  cancelText: "No",
+                  onOk() {
+                    console.log("OK");
+                  },
+                  onCancel() {
+                    console.log("Cancel");
+                  }
                 })
               }
             >
