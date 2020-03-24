@@ -1,21 +1,12 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import CaseTable from "./CaseTable";
-import {
-  Typography,
-  Row,
-  Divider,
-  Col,
-  Button,
-  Switch,
-  InputNumber,
-  Tooltip
-} from "antd";
-import Search from "antd/lib/input/Search";
-import DrawerDownload from "./DrawerDownload";
-import DrawerCreate from "./DrawerCreate";
+import { Typography, Row, Divider, Col } from "antd";
+// import Search from "antd/lib/input/Search";
+// import DrawerDownload from "./DrawerDownload";
+// import DrawerCreate from "./DrawerCreate";
 import Backend from "../../serviceBackend";
-import { PrimButton } from "./HomeStyles";
+// import { PrimButton } from "./HomeStyles";
 
 const { Title } = Typography;
 
@@ -101,93 +92,10 @@ class Home extends React.Component {
             marginBottom: "10px"
           }}
         >
-          <Col span={7}>
-            <Title style={{ marginBottom: "0px" }}>Casos Estudiantiles</Title>
-          </Col>
-          <Col span={3}>
-            <PrimButton>
-              <Button
-                block
-                type="primary"
-                icon="download"
-                onClick={e => this.showDrawer(e, "Download")}
-              >
-                Generar Acta
-              </Button>
-            </PrimButton>
-            <DrawerDownload
-              visible={this.state.downloadDrawerVisible}
-              onClose={this.closeDrawer}
-            />
-          </Col>
-          <Col span={1} />
-          <Col span={3}>
-            <PrimButton>
-              <Button
-                block
-                type="primary"
-                icon="plus"
-                onClick={e => this.showDrawer(e, "Create")}
-              >
-                Crear un nuevo caso
-              </Button>
-            </PrimButton>
-            <DrawerCreate
-              visible={this.state.createDrawerVisible}
-              onClose={this.closeDrawer}
-            />
-          </Col>
-          <Col span={2} style={{ textAlignLast: "center" }}>
-            <Tooltip title="Filtar por número de acta">
-              <Switch
-                checked={this.state.filterByMinute}
-                onChange={checked =>
-                  this.filerByMinute(
-                    checked,
-                    this.state.minuteSearch,
-                    this.state.yearSearch
-                  )
-                }
-              />
-            </Tooltip>
-          </Col>
-          <Col span={2}>
-            <InputNumber
-              disabled={!this.state.filterByMinute}
-              min={0}
-              defaultValue={1}
-              onChange={value =>
-                this.filerByMinute(
-                  this.state.filterByMinute,
-                  value,
-                  this.state.yearSearch
-                )
-              }
-            />
-          </Col>
-          <Col span={2}>
-            <InputNumber
-              disabled={!this.state.filterByMinute}
-              min={2000}
-              defaultValue={2020}
-              onChange={value =>
-                this.filerByMinute(
-                  this.state.filterByMinute,
-                  this.state.minuteSearch,
-                  value
-                )
-              }
-            />
-          </Col>
-          <Col span={4}>
-            <PrimButton>
-              <Search
-                placeholder="Documento"
-                onChange={v => this.performSearch(v.target.value)}
-                value={this.state.searchTerm}
-                enterButton
-              />
-            </PrimButton>
+          <Col span={12}>
+            <Title style={{ marginBottom: "0px" }}>
+              Solicitudes de apadrinamiento
+            </Title>
           </Col>
         </Row>
         <Row>

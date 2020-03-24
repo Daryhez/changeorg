@@ -6,19 +6,20 @@ import Home from "./Components/Home/Home";
 import Edit from "./Components/Edit/Edit";
 import Contact from "./Components/Contact/Contact";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route /*, Redirect*/, Switch } from "react-router-dom";
 import "./css/index.css";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      localStorage.getItem("jwt") != null ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/" />
-      )
-    }
+    render={props => (
+      // localStorage.getItem("jwt") != null ? (
+      //   <Component {...props} />
+      // ) : (
+      //   <Redirect to="/" />
+      // )
+      <Component {...props} />
+    )}
   />
 );
 
