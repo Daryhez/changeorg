@@ -1,5 +1,5 @@
 import React from "react";
-import Backend from "../../../serviceBackend";
+import Backend from "../../serviceBackend";
 import { Table, Popconfirm, message } from "antd";
 import { withRouter } from "react-router-dom";
 

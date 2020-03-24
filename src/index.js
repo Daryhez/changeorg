@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import UnalCanvas from "./js/Components/UnalTemplate/UnalCanvas";
-import LoginForm from "./js/Components/Login/Login";
-import Home from "./js/Components/Home/Home";
-import Edit from "./js/Components/Edit/Edit";
-import Contact from "./js/Components/Contact/Contact";
+import UnalCanvas from "./Components/UnalTemplate/UnalCanvas";
+import LoginForm from "./Components/Login/Login";
+import Home from "./Components/Home/Home";
+import Edit from "./Components/Edit/Edit";
+import Contact from "./Components/Contact/Contact";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import "./css/index.css";

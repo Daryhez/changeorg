@@ -3,8 +3,13 @@ import { Form, Icon, Input, Button, Typography, message } from "antd";
 import { Row, Col } from "antd";
 import { withRouter } from "react-router-dom";
 import { PrimButton } from "../Home/HomeStyles";
-import { LoginFormForgot, LoginGeneral, LoginWelcome } from "./LoginStyled";
-import Backend from "../../../serviceBackend";
+import {
+  LoginFormForgot,
+  LoginGeneral,
+  LoginWelcome,
+  FormLink
+} from "./LoginStyled";
+import Backend from "../../serviceBackend";
 
 const { Title, Text } = Typography;
 
@@ -154,8 +159,45 @@ class NormalLoginForm extends React.Component {
               </Form>
             </LoginGeneral>
           </Col>
-          <Col xs={4} sm={4} md={6} lg={8} xl={8}>
-            <p>Holi</p>
+          <Col xs={2} sm={2} md={2} lg={2} xl={2}></Col>
+          <Col xs={10} sm={10} md={10} lg={10} xl={10}>
+            <LoginGeneral>
+              <LoginWelcome>
+                <Title>
+                  Ingreso estudiante al portal Change.org de Ingeniería
+                </Title>
+                <p>
+                  <Text>
+                    El formulario que se dispone acontinuación es de uso
+                    exclusivo para estudiantes (activos, de la facultad de
+                    ingeniería y de pregrado) en condiciones de vulnerabilidad
+                    socioeconómica.
+                  </Text>
+                </p>
+              </LoginWelcome>
+              <FormLink>
+                <a href="https://forms.gle/PqUTz9RgB544VKRA9">
+                  Ingrese al formulario haciendo click aquí
+                </a>
+              </FormLink>
+              <LoginWelcome>
+                <p>
+                  <br />
+                </p>
+                <p>
+                  <Text>
+                    Recuerde que toda la información que usted registre en este
+                    formulario está sujeta a verificación por parte de la
+                    universidad; y el hecho de llenar el formulario no obliga a
+                    la universidad, a la facultad ni a ningún docente a brindar
+                    el apoyo solicitado.
+                  </Text>
+                </p>
+                <p>
+                  <br />
+                </p>
+              </LoginWelcome>
+            </LoginGeneral>
           </Col>
         </Row>
       </div>

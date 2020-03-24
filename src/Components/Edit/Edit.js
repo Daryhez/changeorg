@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Form, Row, Divider, Typography } from "antd";
 import MutableComponent from "./MutableComponent";
 import MutableTable from "./MutableTable";
-import Backend from "../../../serviceBackend";
+import Backend from "../../serviceBackend";
 import Columns from "react-columns";
 
 const { Title } = Typography;

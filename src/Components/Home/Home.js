@@ -14,7 +14,7 @@ import {
 import Search from "antd/lib/input/Search";
 import DrawerDownload from "./DrawerDownload";
 import DrawerCreate from "./DrawerCreate";
-import Backend from "../../../serviceBackend";
+import Backend from "../../serviceBackend";
 import { PrimButton } from "./HomeStyles";
 
 const { Title } = Typography;
