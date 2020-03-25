@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Typography /*, message */ } from "antd";
+import { Form, Icon, Input, Button, Typography, message } from "antd";
 import { Row, Col } from "antd";
 import { withRouter } from "react-router-dom";
 import { PrimButton } from "../Home/HomeStyles";
@@ -9,7 +9,7 @@ import {
   LoginWelcome,
   FormLink
 } from "./LoginStyled";
-// import Backend from "../../serviceBackend";
+import Backend from "../../serviceBackend";
 
 const { Title, Text } = Typography;
 
@@ -32,36 +32,38 @@ class NormalLoginForm extends React.Component {
   };
 
   performLogin = () => {
-    this.props.history.push("/home");
-    // const key = "updatable";
-    // message.loading({ content: "Iniciando sesión", key });
-    // Backend.sendLogin(this.state.username, this.state.password)
-    //   .then(async response => {
-    //     if (response.status === 403) {
-    //       message.error({ content: "Acceso restringido", key });
-    //     } else if (response.status === 404) {
-    //       message.error({ content: "Contraseña incorrecta", key });
-    //     } else if (response.status === 200) {
-    //       message.success({ content: "Inicio de sesión exitoso", key });
-    //       let res = await response.json();
-    //       localStorage.setItem("jwt", res["token"]);
-    //       window.location.href = "/home";
-    //       // this.props.history.push("/home");
-    //     } else {
-    //       message.error({
-    //         content: "Error en Login",
-    //         key
-    //       });
-    //       console.log("Login Error: Backend HTTP code " + response.status);
-    //     }
-    //   })
-    //   .catch(error => {
-    //     message.error({
-    //       content: "Error en Login",
-    //       key
-    //     });
-    //     console.log("Login Error: " + error);
-    //   });
+    const key = "updatable";
+    message.loading({ content: "Iniciando sesión", key });
+    let err = ["Unauthorized, not proffesor.", "Wrong user or password"];
+    Backend.sendLogin(this.state.username, this.state.password)
+      .then(async response => {
+        if (response.status === 401) {
+          let res = await response.json();
+          if (res.error === err[0]) {
+            message.error({ content: "Acceso restringido", key });
+          } else if (res.error === err[1]) {
+            message.error({ content: "Usuario o contraseña incorrectos", key });
+          }
+        } else if (response.status === 200) {
+          message.success({ content: "Inicio de sesión exitoso", key });
+          let res = await response.json();
+          localStorage.setItem("jwt", res.token);
+          this.props.history.push("/home");
+        } else {
+          message.error({
+            content: "Error en Login",
+            key
+          });
+          console.log("Login Error: Backend HTTP code " + response.status);
+        }
+      })
+      .catch(error => {
+        message.error({
+          content: "Error en Login",
+          key
+        });
+        console.log("Login Error: " + error);
+      });
   };
 
   render() {
