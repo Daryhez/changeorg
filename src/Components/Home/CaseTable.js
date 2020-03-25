@@ -1,90 +1,62 @@
 import React from "react";
-import { Table, Modal, message } from "antd";
+import { Table, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { withRouter } from "react-router-dom";
+import Backend from "../../serviceBackend";
 
 class CaseTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dataSource: [
-        {
-          academic_program: "Ingeniería de Sistemas y Computación",
-          date_stamp: "24/03/2019",
-          pbm: "15",
-          city: "La guajira",
-          socioeconomic_support: "Ipad + TV 80'' + MacBookPro"
-        },
-        {
-          academic_program: "Ingeniería Agrícola",
-          date_stamp: "23/03/2019",
-          pbm: "90",
-          city: "Bogotá D.C.",
-          socioeconomic_support: "Una mantecada, por favor."
-        },
-        {
-          academic_program: "Ingeniería Mecatrónica",
-          date_stamp: "22/03/2019",
-          pbm: "30",
-          city: "Soacha",
-          socioeconomic_support: "Almuerzo durante todos los días"
-        },
-        {
-          academic_program: "Ingeniería Industrial",
-          date_stamp: "21/03/2019",
-          pbm: "40",
-          city: "Tocancipá",
-          socioeconomic_support: "Internet."
-        }
-      ]
-    };
-  }
-  confirmCancel = archiveType => {
-    if (archiveType) {
-      message.success("Solicitud anulada exitosamente");
-    } else {
-      message.success("Solicitud desistida exitosamente");
-    }
-  };
-  generateCouncil = (isPre, recordId) => {
-    // Backend.sendRequest("GET", `generate?pre=${isPre}&id=${recordId}`)
-    //   .then(response => response.json())
-    //   .then(data => {
-    //     Backend.openLink(data.url);
-    //   });
-    if (isPre) {
-      message.success("Acta de Comité Asesor Generada exitosamente");
-    } else {
-      message.success("Acta de Consejo de Facultad Generada exitosamente");
-    }
-  };
   render() {
     var columns = [
       {
         title: "Programa Académico",
-        dataIndex: "academic_program",
-        key: "academic_program"
+        dataIndex: "Programa",
+        key: "Programa"
       },
       {
         title: "Fecha de la Solicitud",
-        dataIndex: "date_stamp",
-        key: "date_stamp"
+        dataIndex: "Fecha",
+        key: "Fecha"
       },
-      { title: "PBM", dataIndex: "pbm", key: "pbm", width: "10%" },
+      { title: "PBM", dataIndex: "PBM", key: "PBM", width: "10%" },
       {
         title: "Ciudad de procedencia",
-        dataIndex: "city",
-        key: "city"
+        dataIndex: "Procedencia",
+        key: "Procedencia"
       },
       {
         title: "Tipo de apoyo solicitado",
-        dataIndex: "socioeconomic_support",
-        key: "socioeconomic_support"
+        dataIndex: "Apoyo",
+        key: "Apoyo"
       },
       {
-        title: "Apadrinar",
+        title: "Justificación",
+        key: "Justification",
+        width: "11%",
+        render: (text, record) => (
+          <span>
+            {/* eslint-disable-next-line */}
+            <a
+              onClick={() =>
+                Modal.info({
+                  title: "Justificación del estudiante",
+                  content: (
+                    <div>
+                      <p>{record.Descripcion}</p>
+                    </div>
+                  ),
+                  onOk() {}
+                })
+              }
+            >
+              Leer detalladamente
+            </a>
+          </span>
+        )
+      },
+      {
+        title: "Descripción",
         key: "edit",
-        width: "8%",
+        width: "10%",
         render: (text, record) => (
           <span>
             {/* eslint-disable-next-line */}
@@ -99,11 +71,9 @@ class CaseTable extends React.Component {
                   okType: "primary",
                   cancelText: "No",
                   onOk() {
-                    console.log("OK");
+                    Backend.sendRequest("POST", "/sponsor", {});
                   },
-                  onCancel() {
-                    console.log("Cancel");
-                  }
+                  onCancel() {}
                 })
               }
             >
@@ -114,7 +84,11 @@ class CaseTable extends React.Component {
       }
     ];
     return (
-      <Table dataSource={this.state.dataSource} columns={columns} rowKey="id" />
+      <Table
+        dataSource={this.props.dataSource}
+        columns={columns}
+        rowKey="request_id"
+      />
     );
   }
 }

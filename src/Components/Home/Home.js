@@ -112,10 +112,10 @@ class Home extends React.Component {
     );
   }
   componentDidMount() {
-    Backend.sendRequest("GET", "case")
+    Backend.sendRequest("GET", "prequest")
       .then(response => response.json())
       .then(data => {
-        this.setState({ dataSource: data["cases"] });
+        this.setState({ dataSource: data.rows });
       });
   }
 }
