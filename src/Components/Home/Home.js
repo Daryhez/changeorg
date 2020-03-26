@@ -24,6 +24,13 @@ class Home extends React.Component {
       minuteSearch: 1,
       yearSearch: 2020
     };
+    Backend.sendRequest("GET", "valid")
+      .then(r => r.json())
+      .then(r => {
+        if (r.valid === "no") {
+          this.props.history.push("/");
+        }
+      });
   }
   performSearch = keyTerm => {
     this.setState({ searchTerm: keyTerm });

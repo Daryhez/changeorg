@@ -24,7 +24,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     render={props =>
       validToken() ? <Component {...props} /> : <Redirect to="/" />
     }
-  />
+  ></Route>
 );
 
 ReactDOM.render(
