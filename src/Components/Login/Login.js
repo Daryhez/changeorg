@@ -196,8 +196,8 @@ class NormalLoginForm extends React.Component {
                   <Text>
                     Recuerde que toda la información que usted registre en este
                     formulario está sujeta a verificación por parte de la
-                    universidad; y el hecho de llenar el formulario no obliga a
-                    la universidad, a la facultad ni a ningún docente a brindar
+                    Universidad; y el hecho de llenar el formulario no obliga a
+                    la Universidad, a la Facultad ni a ningún docente a brindar
                     el apoyo solicitado.
                   </Text>
                 </p>
