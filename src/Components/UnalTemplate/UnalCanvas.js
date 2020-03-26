@@ -204,12 +204,27 @@ class UnalCanvas extends Component {
               </div>
               <div className="mainMenu">
                 <div className="btn-group">
-                  <a
-                    href="/apoyo/home"
-                    className="btn btn-default dropdown-toggle"
-                  >
-                    Inicio
-                  </a>
+                  {(() => {
+                    if (localStorage.getItem("jwt")) {
+                      return (
+                        <a
+                          href="/apoyo/home"
+                          className="btn btn-default dropdown-toggle"
+                        >
+                          Inicio
+                        </a>
+                      );
+                    } else {
+                      return (
+                        <a
+                          href="/apoyo"
+                          className="btn btn-default dropdown-toggle"
+                        >
+                          Inicio
+                        </a>
+                      );
+                    }
+                  })()}
                   <span className="caret-right" />
                 </div>
                 <div className="btn-group">
