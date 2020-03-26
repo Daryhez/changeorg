@@ -235,7 +235,7 @@ class UnalCanvas extends Component {
                         <a
                           onClick={() => {
                             localStorage.removeItem("jwt");
-                            window.location.href = "/";
+                            window.location.href = "/apoyo";
                           }}
                           className="btn btn-default dropdown-toggle"
                         >

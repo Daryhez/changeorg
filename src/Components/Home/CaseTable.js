@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Modal } from "antd";
+import { Table, Modal, message } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { withRouter } from "react-router-dom";
 import Backend from "../../serviceBackend";
@@ -75,6 +75,11 @@ class CaseTable extends React.Component {
                       request_id: record.request_id
                     });
                     window.location.reload(false);
+                    const key = "updatable";
+                    message.success({
+                      content: "Inicio de sesión exitoso",
+                      key
+                    });
                   },
                   onCancel() {}
                 })
