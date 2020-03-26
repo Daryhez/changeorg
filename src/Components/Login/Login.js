@@ -82,9 +82,7 @@ class NormalLoginForm extends React.Component {
           <Col xs={10} sm={10} md={10} lg={10} xl={10}>
             <LoginGeneral>
               <LoginWelcome>
-                <Title>
-                  Ingreso docente al portal Change.org de Ingeniería
-                </Title>
+                <Title>Ingreso docente al portal UN Apoyo de Ingeniería</Title>
                 <p>
                   <Text>
                     Bienvenido al formulario de apadrinamiento para estudiantes
@@ -168,7 +166,7 @@ class NormalLoginForm extends React.Component {
             <LoginGeneral>
               <LoginWelcome>
                 <Title>
-                  Ingreso estudiante al portal Change.org de Ingeniería
+                  Ingreso estudiante al portal UN Apoyo de Ingeniería
                 </Title>
                 <p>
                   <Text>
