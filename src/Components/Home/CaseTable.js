@@ -10,7 +10,7 @@ class CaseTable extends React.Component {
       {
         title: "Programa Académico",
         dataIndex: "Programa",
-        key: "Programa"
+        key: "Programa",
       },
       {
         title: "Fecha de la Solicitud",
@@ -44,7 +44,7 @@ class CaseTable extends React.Component {
                       <p>{record.Descripcion}</p>
                     </div>
                   ),
-                  onOk() {}
+                  onOk() { }
                 })
               }
             >
@@ -81,7 +81,7 @@ class CaseTable extends React.Component {
                       key
                     });
                   },
-                  onCancel() {}
+                  onCancel() { }
                 })
               }
             >
@@ -96,6 +96,7 @@ class CaseTable extends React.Component {
         dataSource={this.props.dataSource}
         columns={columns}
         rowKey="request_id"
+        scroll={{ x: 1300 }}
       />
     );
   }

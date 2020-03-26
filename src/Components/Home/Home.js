@@ -6,6 +6,7 @@ import { Typography, Row, Divider, Col } from "antd";
 // import DrawerDownload from "./DrawerDownload";
 // import DrawerCreate from "./DrawerCreate";
 import Backend from "../../serviceBackend";
+import './HomeResponsive.css'
 // import { PrimButton } from "./HomeStyles";
 
 const { Title } = Typography;
@@ -92,7 +93,7 @@ class Home extends React.Component {
             marginBottom: "10px"
           }}
         >
-          <Col span={12}>
+          <Col>
             <Title style={{ marginBottom: "0px" }}>
               Solicitudes de apadrinamiento
             </Title>
