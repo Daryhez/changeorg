@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Typography, message, Image } from "antd";
+import { Form, Icon, Input, Button, Typography, message } from "antd";
 import BannerApoyo from "./../../images/apoyo.jfif";
 import { Row, Col } from "antd";
 import { withRouter } from "react-router-dom";
@@ -180,7 +180,12 @@ class NormalLoginForm extends React.Component {
               </LoginWelcome>
               <FormLink>
                 <a href="https://forms.gle/PqUTz9RgB544VKRA9">
-                  <img src={BannerApoyo} width={450} height={200} />
+                  <img
+                    src={BannerApoyo}
+                    width={450}
+                    height={200}
+                    alt="Banner Estudiante"
+                  />
                 </a>
               </FormLink>
               <LoginWelcome>

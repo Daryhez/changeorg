@@ -23,7 +23,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 );
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/apoyo">
     <UnalCanvas>
       <Switch>
         <Route exact path="/" component={LoginForm} />
