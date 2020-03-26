@@ -1,5 +1,6 @@
 import React from "react";
-import { Form, Icon, Input, Button, Typography, message } from "antd";
+import { Form, Icon, Input, Button, Typography, message, Image } from "antd";
+import BannerApoyo from "./../../images/apoyo.jfif";
 import { Row, Col } from "antd";
 import { withRouter } from "react-router-dom";
 import { PrimButton } from "../Home/HomeStyles";
@@ -174,13 +175,14 @@ class NormalLoginForm extends React.Component {
                     El formulario que se dispone acontinuación es de uso
                     exclusivo para estudiantes (activos, de la facultad de
                     ingeniería y de pregrado) en condiciones de vulnerabilidad
-                    socioeconómica.
+                    socioeconómica. Haga click en la imagen para acceder al
+                    formulario.
                   </Text>
                 </p>
               </LoginWelcome>
               <FormLink>
                 <a href="https://forms.gle/PqUTz9RgB544VKRA9">
-                  Ingrese al formulario haciendo click aquí
+                  <img src={BannerApoyo} width={450} height={200} />
                 </a>
               </FormLink>
               <LoginWelcome>
