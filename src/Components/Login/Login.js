@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Icon, Input, Button, Typography, message } from "antd";
 import BannerApoyo from "./../../images/apoyo.jfif";
-import { Row, Col } from "antd";
+import { Col, Row } from "antd";
 import { withRouter } from "react-router-dom";
 import { PrimButton } from "../Home/HomeStyles";
 import {
@@ -10,6 +10,7 @@ import {
   LoginWelcome,
   FormLink
 } from "./LoginStyled";
+import './LoginResponsive.css'
 import Backend from "../../serviceBackend";
 
 const { Title, Text } = Typography;
@@ -78,8 +79,7 @@ class NormalLoginForm extends React.Component {
           </a>
         </div>
         <Row>
-          <Col xs={1} sm={1} md={1} lg={1} xl={1}></Col>
-          <Col xs={10} sm={10} md={10} lg={10} xl={10}>
+          <Col xs={8} sm={16} md={24} lg={32} xl={40}>
             <LoginGeneral>
               <LoginWelcome>
                 <Title>Ingreso docente al portal UN Apoyo de Ingeniería</Title>
@@ -161,8 +161,7 @@ class NormalLoginForm extends React.Component {
               </Form>
             </LoginGeneral>
           </Col>
-          <Col xs={2} sm={2} md={2} lg={2} xl={2}></Col>
-          <Col xs={10} sm={10} md={10} lg={10} xl={10}>
+          <Col xs={8} sm={16} md={24} lg={32} xl={40}>
             <LoginGeneral>
               <LoginWelcome>
                 <Title>
@@ -182,8 +181,8 @@ class NormalLoginForm extends React.Component {
                 <a href="https://forms.gle/PqUTz9RgB544VKRA9">
                   <img
                     src={BannerApoyo}
-                    width={450}
-                    height={200}
+                    width='90%'
+                    height='60%'
                     alt="Banner Estudiante"
                   />
                 </a>
@@ -207,8 +206,8 @@ class NormalLoginForm extends React.Component {
               </LoginWelcome>
             </LoginGeneral>
           </Col>
-        </Row>
-      </div>
+        </Row >
+      </div >
     );
   }
 }
