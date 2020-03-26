@@ -6,7 +6,6 @@ import { Typography, Row, Divider, Col } from "antd";
 // import DrawerDownload from "./DrawerDownload";
 // import DrawerCreate from "./DrawerCreate";
 import Backend from "../../serviceBackend";
-import './HomeResponsive.css'
 // import { PrimButton } from "./HomeStyles";
 
 const { Title } = Typography;
