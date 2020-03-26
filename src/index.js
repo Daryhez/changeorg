@@ -7,17 +7,22 @@ import Home from "./Components/Home/Home";
 import Contact from "./Components/Contact/Contact";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import Backend from "./serviceBackend";
 import "./css/index.css";
-
+var validToken = async () => {
+  var res;
+  await Backend.sendRequest("GET", "valid")
+    .then(r => r.json())
+    .then(r => {
+      res = r.valid === "yes";
+    });
+  return res;
+};
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      localStorage.getItem("jwt") != null ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to="/" />
-      )
+      validToken() ? <Component {...props} /> : <Redirect to="/" />
     }
   />
 );

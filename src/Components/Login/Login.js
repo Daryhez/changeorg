@@ -10,7 +10,7 @@ import {
   LoginWelcome,
   FormLink
 } from "./LoginStyled";
-import './LoginResponsive.css'
+import "./LoginResponsive.css";
 import Backend from "../../serviceBackend";
 
 const { Title, Text } = Typography;
@@ -85,15 +85,9 @@ class NormalLoginForm extends React.Component {
                 <Title>Ingreso docente al portal UN Apoyo de Ingeniería</Title>
                 <p>
                   <Text>
-                    Bienvenido al formulario de apadrinamiento para estudiantes
-                    activos de pregrado de la Facultad de Ingeniería.
-                  </Text>
-                </p>
-                <p>
-                  <Text>
-                    Para continuar, por favor, ingrese su usuario y contraseña
-                    institucional. Recuerde que este formulario es exclusivo
-                    para docentes.
+                    Bienvenido al portal de apoyos para estudiantes activos de
+                    pregrado de la Facultad de Ingeniería. Para iniciar sesión
+                    como Docente ingresa tu usuario y contraseña institucional:
                   </Text>
                 </p>
               </LoginWelcome>
@@ -170,10 +164,9 @@ class NormalLoginForm extends React.Component {
                 <p>
                   <Text>
                     El formulario que se dispone acontinuación es de uso
-                    exclusivo para estudiantes (activos, de la facultad de
-                    ingeniería y de pregrado) en condiciones de vulnerabilidad
-                    socioeconómica. Haga click en la imagen para acceder al
-                    formulario.
+                    exclusivo para estudiantes de pregrado activos de la
+                    Facultad de Ingeniería en condiciones de vulnerabilidad
+                    socioeconómica.
                   </Text>
                 </p>
               </LoginWelcome>
@@ -181,8 +174,8 @@ class NormalLoginForm extends React.Component {
                 <a href="https://forms.gle/PqUTz9RgB544VKRA9">
                   <img
                     src={BannerApoyo}
-                    width='90%'
-                    height='60%'
+                    width="90%"
+                    height="60%"
                     alt="Banner Estudiante"
                   />
                 </a>
@@ -191,23 +184,11 @@ class NormalLoginForm extends React.Component {
                 <p>
                   <br />
                 </p>
-                <p>
-                  <Text>
-                    Recuerde que toda la información que usted registre en este
-                    formulario está sujeta a verificación por parte de la
-                    Universidad; y el hecho de llenar el formulario no obliga a
-                    la Universidad, a la Facultad ni a ningún docente a brindar
-                    el apoyo solicitado.
-                  </Text>
-                </p>
-                <p>
-                  <br />
-                </p>
               </LoginWelcome>
             </LoginGeneral>
           </Col>
-        </Row >
-      </div >
+        </Row>
+      </div>
     );
   }
 }

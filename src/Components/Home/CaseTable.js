@@ -11,27 +11,34 @@ class CaseTable extends React.Component {
         title: "Programa Académico",
         dataIndex: "Programa",
         key: "Programa",
+        width: "15%"
       },
       {
         title: "Fecha de la Solicitud",
         dataIndex: "Fecha",
-        key: "Fecha"
+        key: "Fecha",
+        width: "8%",
+        render: (text) => (
+        <p>{text.substring(0,10)}</p>
+        )
       },
-      { title: "PBM", dataIndex: "PBM", key: "PBM", width: "10%" },
+      { title: "PBM", dataIndex: "PBM", key: "PBM", width: "5%" },
       {
         title: "Ciudad de procedencia",
         dataIndex: "Procedencia",
-        key: "Procedencia"
+        key: "Procedencia",
+        width: "15%"
       },
       {
         title: "Tipo de apoyo solicitado",
         dataIndex: "Apoyo",
-        key: "Apoyo"
+        key: "Apoyo",
+        width: "20%"
       },
       {
         title: "Justificación",
         key: "Justification",
-        width: "11%",
+        width: "9%",
         render: (text, record) => (
           <span>
             {/* eslint-disable-next-line */}
