@@ -71,7 +71,10 @@ class CaseTable extends React.Component {
                   okType: "primary",
                   cancelText: "No",
                   onOk() {
-                    Backend.sendRequest("POST", "/sponsor", {});
+                    Backend.sendRequest("POST", "sponsor", {
+                      request_id: record.request_id
+                    });
+                    window.location.reload(false);
                   },
                   onCancel() {}
                 })
