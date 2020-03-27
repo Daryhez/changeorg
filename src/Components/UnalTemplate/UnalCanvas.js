@@ -502,7 +502,7 @@ class UnalCanvas extends Component {
               <br />
               <a
                 title="Comuníquese con el administrador de este sitio web"
-                href="mailto:autoevalua_fibog@unal.edu.co"
+                href="mailto:decfaci_bog@unal.edu.co"
               >
                 decfaci_bog@unal.edu.co
               </a>
