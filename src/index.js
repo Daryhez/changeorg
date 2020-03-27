@@ -21,9 +21,17 @@ var validToken = async () => {
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props =>
-      validToken() ? <Component {...props} /> : <Redirect to="/" />
-    }
+    render={props => {
+      (async () => {
+        if (await validToken()) {
+          console.log("valid");
+          return <Component {...props} />;
+        } else {
+          console.log("NOvalid");
+          return <Redirect to="/" />;
+        }
+      })();
+    }}
   ></Route>
 );
 
