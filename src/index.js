@@ -5,7 +5,6 @@ import LoginForm from "./Components/Login/Login";
 import Home from "./Components/Home/Home";
 import Godson from "./Components/Godson/Godson";
 import Contact from "./Components/Contact/Contact";
-import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./css/index.css";
 const PrivateRoute = ({ component: Component, ...rest }) => (

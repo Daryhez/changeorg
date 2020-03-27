@@ -23,6 +23,19 @@ function checkBck() {
 }
 checkBck();
 jQuery(document).ready(function($) {
+  //Navbar Responsive
+
+  $("#button-navbar").click(function(event) {
+    event.stopPropagation();
+    if ($("#bs-navbar").hasClass("in")) {
+      $("#bs-navbar").removeClass("in");
+    } else {
+      $("#bs-navbar").addClass("in");
+    }
+  });
+
+  //Perfiles y servicios Responsive
+
   $("#unalOpenMenuServicios, #unalOpenMenuPerfiles").on("click", function(e) {
     var $target = $(this).data("target");
     var $mOffset = $(this).offset();
