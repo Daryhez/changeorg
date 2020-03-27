@@ -37,8 +37,8 @@ class GodsonTable extends React.Component {
         key: "Celular"
       },
       {
-        title: "Dirección",
-        dataIndex: "Dirección",
+        title: "Direccion",
+        dataIndex: "Direccion",
         key: "Dirección"
       },
       { title: "PBM", dataIndex: "PBM", key: "PBM" },

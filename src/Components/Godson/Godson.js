@@ -55,42 +55,12 @@ class Godson extends Component {
       </div>
     );
   }
-
   componentDidMount() {
-    this.setState({
-      dataSource: [
-        {
-          request_id: "1",
-          Fecha: "26/03/2020",
-          Programa: "Ingeniería Civil",
-          Documento: "1013678335",
-          Nombre: "Daniel Escobar",
-          Correo: "daescobarp@unal.edu.co",
-          Celular: "3016233441",
-          Dirección: "Calle Falsa 123",
-          PBM: "15",
-          Procedencia: "Bogotá D.C.",
-          Apoyo: "Comida, tengo hambresita.",
-          Descripcion:
-            "Hace 5 años que mis padres no tienen empleo, vendía dulces en la U, pero ahora no puedo pagar mi arriendo."
-        },
-        {
-          request_id: "2",
-          Fecha: "27/03/2020",
-          Programa: "Ingeniería Industrial",
-          Documento: "1015987321",
-          Nombre: "Toño Fortich",
-          Correo: "ajsuarezf@unal.edu.co",
-          Celular: "3019517896",
-          Dirección: "Calle Falsa 321",
-          PBM: "40",
-          Procedencia: "De la costa",
-          Apoyo: "Ya comí pero necesito Internet para LOL",
-          Descripcion:
-            "Me cortaron el recibo del internet y ahora no puedo jugar LOL"
-        }
-      ]
-    });
+    Backend.sendRequest("GET", "sponsor")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ dataSource: data.rows });
+      });
   }
 }
 
