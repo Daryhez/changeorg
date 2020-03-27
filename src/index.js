@@ -6,7 +6,7 @@ import Home from "./Components/Home/Home";
 // import Edit from "./Components/Edit/Edit";
 import Contact from "./Components/Contact/Contact";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Backend from "./serviceBackend";
 import "./css/index.css";
 var validToken = async () => {
@@ -27,8 +27,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
           console.log("valid");
           return <Component {...props} />;
         } else {
-          console.log("NOvalid");
-          return <Redirect to="/" />;
+          window.location.href = "/apoyo";
         }
       })();
     }}
