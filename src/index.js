@@ -6,32 +6,19 @@ import Home from "./Components/Home/Home";
 // import Edit from "./Components/Edit/Edit";
 import Contact from "./Components/Contact/Contact";
 import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Backend from "./serviceBackend";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "./css/index.css";
-var validToken = async () => {
-  var res;
-  await Backend.sendRequest("GET", "valid")
-    .then(r => r.json())
-    .then(r => {
-      res = r.valid === "yes";
-    });
-  return res;
-};
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
-    render={props => {
-      (async () => {
-        if (await validToken()) {
-          console.log("valid");
-          return <Component {...props} />;
-        } else {
-          window.location.href = "/apoyo";
-        }
-      })();
-    }}
-  ></Route>
+    render={props =>
+      localStorage.getItem("jwt") != null ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to="/" />
+      )
+    }
+  />
 );
 
 ReactDOM.render(
