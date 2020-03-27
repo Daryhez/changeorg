@@ -91,7 +91,7 @@ class GodsonTable extends React.Component {
           pageSizeOptions: ["10", "20", "50", "100"],
           position: "bottom",
           size: "small",
-          showTotal: num => `Tiene ${num} ahijados`
+          showTotal: num => `Total: ${num} estudiantes`
         }}
       />
     );

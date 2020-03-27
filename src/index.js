@@ -20,7 +20,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     }
   />
 );
-
 ReactDOM.render(
   <BrowserRouter basename="/apoyo">
     <UnalCanvas>
@@ -34,5 +33,3 @@ ReactDOM.render(
   </BrowserRouter>,
   document.getElementById("root")
 );
-
-serviceWorker.unregister();

@@ -33,7 +33,9 @@ class Godson extends Component {
         >
           <CardWrapper>
             <Col>
-              <TextResponsive>Mis estudiantes apadrinados</TextResponsive>
+              <TextResponsive>
+                Estudiantes que cuentan com mi apoyo
+              </TextResponsive>
             </Col>
             <ButtonResponsive
               type="primary"
