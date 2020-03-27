@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import UnalCanvas from "./Components/UnalTemplate/UnalCanvas";
 import LoginForm from "./Components/Login/Login";
 import Home from "./Components/Home/Home";
-// import Edit from "./Components/Edit/Edit";
+import Godson from "./Components/Godson/Godson";
 import Contact from "./Components/Contact/Contact";
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
@@ -28,7 +28,7 @@ ReactDOM.render(
         <Route exact path="/" component={LoginForm} />
         <Route exact path="/contact" component={Contact} />
         <PrivateRoute exact path="/home" component={Home} />
-        {/* <PrivateRoute exact path="/edit/:id" component={Edit} /> */}
+        <PrivateRoute exact path="/godson" component={Godson} />
       </Switch>
     </UnalCanvas>
   </BrowserRouter>,

@@ -1,29 +1,21 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import CaseTable from "./CaseTable";
-import { Typography, Row, Divider, Col } from "antd";
-// import Search from "antd/lib/input/Search";
-// import DrawerDownload from "./DrawerDownload";
-// import DrawerCreate from "./DrawerCreate";
+import { Row, Divider, Col } from "antd";
 import Backend from "../../serviceBackend";
-// import { PrimButton } from "./HomeStyles";
-
-const { Title } = Typography;
+import {
+  CardWrapper,
+  TextResponsive,
+  ButtonResponsive
+} from "../Godson/GodsonStyled";
 
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.closeDrawer = this.closeDrawer.bind(this);
     this.state = {
-      dataSource: [],
-      dataMatches: [],
-      searchTerm: "",
-      downloadDrawerVisible: false,
-      createDrawerVisible: false,
-      filterByMinute: false,
-      minuteSearch: 1,
-      yearSearch: 2020
+      dataSource: []
     };
+    this.updateDataSource = this.updateDataSource.bind(this);
     Backend.sendRequest("GET", "valid")
       .then(r => r.json())
       .then(r => {
@@ -32,60 +24,12 @@ class Home extends React.Component {
         }
       });
   }
-  performSearch = keyTerm => {
-    this.setState({ searchTerm: keyTerm });
-    this.setState({ filterByMinute: false });
-    let matches = [];
-    this.state.dataSource.forEach(i => {
-      if (i.student_dni.includes(keyTerm)) {
-        matches.push(i);
-      }
-    });
-    this.setState({ dataMatches: matches });
-  };
-  filerByMinute = (checked, minute, year) => {
-    this.setState({ filterByMinute: checked });
-    this.setState({ minuteSearch: minute });
-    this.setState({ yearSearch: year });
-    this.setState({ searchTerm: "" });
-    let newMatches = [];
-    if (checked) {
-      this.state.dataSource.forEach(i => {
-        if (
-          // eslint-disable-next-line
-          i.consecutive_minute == minute &&
-          // eslint-disable-next-line
-          i.year == year
-        ) {
-          newMatches.push(i);
-        }
+  updateDataSource = () => {
+    Backend.sendRequest("GET", "prequest")
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ dataSource: data.rows });
       });
-      this.setState({ dataMatches: newMatches });
-    }
-  };
-  showDrawer = (e, drw) => {
-    e.preventDefault();
-    if (drw === "Create") {
-      this.setState({
-        createDrawerVisible: true
-      });
-    } else if (drw === "Download") {
-      this.setState({
-        downloadDrawerVisible: true
-      });
-    }
-  };
-  closeDrawer = (e, drw) => {
-    e.preventDefault();
-    if (drw === "Create") {
-      this.setState({
-        createDrawerVisible: false
-      });
-    } else if (drw === "Download") {
-      this.setState({
-        downloadDrawerVisible: false
-      });
-    }
   };
   render() {
     return (
@@ -99,19 +43,25 @@ class Home extends React.Component {
             marginBottom: "10px"
           }}
         >
-          <Col>
-            <Title style={{ marginBottom: "0px" }}>
-              Solicitudes de apadrinamiento
-            </Title>
-          </Col>
+          <CardWrapper>
+            <Col>
+              <TextResponsive>Solicitudes de estudiantes</TextResponsive>
+            </Col>
+            <ButtonResponsive
+              type="primary"
+              onClick={e => {
+                e.preventDefault();
+                this.props.history.push("/godson");
+              }}
+            >
+              Mis estudiantes apadrinados
+            </ButtonResponsive>
+          </CardWrapper>
         </Row>
         <Row>
           <CaseTable
-            dataSource={
-              this.state.searchTerm === "" && !this.state.filterByMinute
-                ? this.state.dataSource
-                : this.state.dataMatches
-            }
+            dataSource={this.state.dataSource}
+            updateDataSource={this.updateDataSource}
           />
         </Row>
         <Divider style={{ background: "#ffffff00" }} />
@@ -119,11 +69,7 @@ class Home extends React.Component {
     );
   }
   componentDidMount() {
-    Backend.sendRequest("GET", "prequest")
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ dataSource: data.rows });
-      });
+    this.updateDataSource();
   }
 }
 

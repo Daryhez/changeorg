@@ -18,13 +18,11 @@ class CaseTable extends React.Component {
         dataIndex: "Fecha",
         key: "Fecha",
         width: "8%",
-        render: (text) => (
-        <p>{text.substring(0,10)}</p>
-        )
+        render: text => <p>{text.substring(0, 10)}</p>
       },
       { title: "PBM", dataIndex: "PBM", key: "PBM", width: "5%" },
       {
-        title: "Ciudad de procedencia",
+        title: "Departamento de procedencia",
         dataIndex: "Procedencia",
         key: "Procedencia",
         width: "15%"
@@ -51,7 +49,7 @@ class CaseTable extends React.Component {
                       <p>{record.Descripcion}</p>
                     </div>
                   ),
-                  onOk() { }
+                  onOk() {}
                 })
               }
             >
@@ -61,14 +59,16 @@ class CaseTable extends React.Component {
         )
       },
       {
-        title: "Descripción",
+        title: "Apadrinar",
         key: "edit",
         width: "10%",
         render: (text, record) => (
           <span>
             {/* eslint-disable-next-line */}
             <a
-              onClick={() =>
+              onClick={() => {
+                var updateD = this.props.updateDataSource;
+                var push = () => this.props.history.push("/godson");
                 Modal.confirm({
                   title: "¿Está seguro que desea apadrinar a este estudiante?",
                   icon: <ExclamationCircleOutlined />,
@@ -78,19 +78,24 @@ class CaseTable extends React.Component {
                   okType: "primary",
                   cancelText: "No",
                   onOk() {
+                    updateD();
+                    const key = "updatable";
+                    message.success(
+                      {
+                        content:
+                          "Apadrinamiento exitoso! Por favor revise su correo!",
+                        key
+                      },
+                      20
+                    );
+                    push();
                     Backend.sendRequest("POST", "sponsor", {
                       request_id: record.request_id
                     });
-                    window.location.reload(false);
-                    const key = "updatable";
-                    message.success({
-                      content: "Inicio de sesión exitoso",
-                      key
-                    });
                   },
-                  onCancel() { }
-                })
-              }
+                  onCancel() {}
+                });
+              }}
             >
               Apadrinar
             </a>
@@ -103,7 +108,17 @@ class CaseTable extends React.Component {
         dataSource={this.props.dataSource}
         columns={columns}
         rowKey="request_id"
-        scroll={{ x: 1300 }}
+        scroll={{ x: 1000 }}
+        bordered={true}
+        pagination={{
+          defaultPageSize: 10,
+          showSizeChanger: true,
+          locale: { items_per_page: "por página" },
+          pageSizeOptions: ["10", "20", "50", "100"],
+          position: "bottom",
+          size: "small",
+          showTotal: num => `Hay ${num} solicitudes`
+        }}
       />
     );
   }
