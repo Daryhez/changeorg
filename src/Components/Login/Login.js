@@ -179,7 +179,7 @@ class NormalLoginForm extends React.Component {
                 </Title>
                 <p>
                   <Text>
-                    El formulario que se dispone acontinuación es de uso
+                    El formulario que se encuentra acontinuación es de uso
                     exclusivo para estudiantes de pregrado activos de la
                     Facultad de Ingeniería en condiciones de vulnerabilidad
                     socioeconómica.
