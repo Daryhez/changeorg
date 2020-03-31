@@ -239,8 +239,8 @@ class UnalCanvas extends Component {
                             <td className="gsc-input">
                               <div className="gsc-input-box" id="gsc-iw-id1">
                                 <table
-                                  cellspacing="0"
-                                  cellpadding="0"
+                                  cellSpacing="0"
+                                  cellPadding="0"
                                   id="gs_id50"
                                   className="gstl_50 gsc-input"
                                   style={{ width: "100%", padding: "0px" }}

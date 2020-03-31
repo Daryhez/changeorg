@@ -1,6 +1,7 @@
 import React from "react";
-import { Form, Icon, Input, Button, Radio, Divider } from "antd";
+import { Form, Icon, Input, Button, Radio, Divider, message } from "antd";
 import { Row, Col } from "antd";
+import Backend from "../../serviceBackend";
 
 import { withRouter } from "react-router-dom";
 
@@ -11,7 +12,14 @@ class Contact extends React.Component {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log("Received values of form: ", values);
+        Backend.sendRequest("POST", "recommend", values)
+          .then(r => r.json())
+          .then(r => {
+            if (r.status === "Confirmed") {
+              this.props.history.push("/home");
+              message.success("PQR enviada correctamente");
+            }
+          });
       }
     });
   };
@@ -26,7 +34,6 @@ class Contact extends React.Component {
 
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { value } = this.state;
     return (
       <>
         <Divider style={{ background: "#ffffff00" }} />
@@ -36,10 +43,9 @@ class Contact extends React.Component {
             <div className="contact-welcome">
               <h1>Contáctenos</h1>
             </div>
-
             <Form onSubmit={this.handleSubmit} className="login-form">
               <Form.Item label="Nombre completo">
-                {getFieldDecorator("nombre", {
+                {getFieldDecorator("name", {
                   rules: [
                     { required: true, message: "Por favor ingrese su nombre." }
                   ]
@@ -52,9 +58,8 @@ class Contact extends React.Component {
                   />
                 )}
               </Form.Item>
-
               <Form.Item label="Correo electrónico">
-                {getFieldDecorator("correo", {
+                {getFieldDecorator("email", {
                   rules: [
                     {
                       required: true,
@@ -70,37 +75,34 @@ class Contact extends React.Component {
                   />
                 )}
               </Form.Item>
-
               <Form.Item label="Tipo de mensaje">
-                <Radio.Group
-                  defaultValue="Duda"
-                  buttonStyle="solid"
-                  onChange={this.handleFormLayoutChange}
-                >
-                  <Radio.Button value="Duda">Duda</Radio.Button>
-                  <Radio.Button value="Sugerencia">Sugerencia</Radio.Button>
-                  <Radio.Button value="Petición">Petición</Radio.Button>
-                  <Radio.Button value="Queja">Queja</Radio.Button>
-                  <Radio.Button value="Reclamo">Reclamo</Radio.Button>
-                  <Radio.Button value="Otro">Otro</Radio.Button>
-                </Radio.Group>
+                {getFieldDecorator("type", { initialValue: "Duda" })(
+                  <Radio.Group
+                    buttonStyle="solid"
+                    onChange={this.handleFormLayoutChange}
+                  >
+                    <Radio.Button value="Duda">Duda</Radio.Button>
+                    <Radio.Button value="Sugerencia">Sugerencia</Radio.Button>
+                    <Radio.Button value="Petición">Petición</Radio.Button>
+                    <Radio.Button value="Queja">Queja</Radio.Button>
+                    <Radio.Button value="Reclamo">Reclamo</Radio.Button>
+                    <Radio.Button value="Otro">Otro</Radio.Button>
+                  </Radio.Group>
+                )}
               </Form.Item>
-
               <Form.Item>
-                {getFieldDecorator("mensaje", {
+                {getFieldDecorator("msg", {
                   rules: [
                     { required: true, message: "Por favor ingrese su mensaje." }
                   ]
                 })(
                   <TextArea
-                    value={value}
                     onChange={this.onChange}
                     autoSize={{ minRows: 3, maxRows: 5 }}
                     placeholder="Escriba aquí su mensaje"
                   />
                 )}
               </Form.Item>
-
               <Form.Item>
                 <Button
                   type="primary"
