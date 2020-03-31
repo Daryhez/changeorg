@@ -48,11 +48,6 @@ class GodsonTable extends React.Component {
         key: "Procedencia"
       },
       {
-        title: "Departamento de procedencia",
-        dataIndex: "Procedencia",
-        key: "Procedencia"
-      },
-      {
         title: "¿Se encuentra en Bogotá?",
         dataIndex: "Bogota",
         key: "Bogota"
