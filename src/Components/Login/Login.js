@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Icon, Input, Button, Typography, message } from "antd";
+import { Form, Icon, Input, Button, Typography, message, Modal } from "antd";
 import BannerApoyo from "./../../images/apoyo.jfif";
 import { withRouter } from "react-router-dom";
 import { PrimButton } from "../Home/HomeStyles";
@@ -50,6 +50,15 @@ class NormalLoginForm extends React.Component {
           let res = await response.json();
           if (res.error === err[0]) {
             message.error({ content: "Acceso restringido", key });
+            Modal.info({
+              title: 'Acceso restringido',
+              content: (
+                <div>
+                  <p>Por favor, envíe una petición a través de contáctenos.</p>
+                </div>
+              ),
+              onOk() {},
+            });
           } else if (res.error === err[1]) {
             message.error({ content: "Usuario o contraseña incorrectos", key });
           }
