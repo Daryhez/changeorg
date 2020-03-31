@@ -17,10 +17,9 @@ class CaseTable extends React.Component {
         title: "Fecha de la Solicitud",
         dataIndex: "Fecha",
         key: "Fecha",
-        width: "8%",
-        render: text => <p>{text.substring(0, 10)}</p>
+        width: "10%"
       },
-      { title: "PBM", dataIndex: "PBM", key: "PBM", width: "5%" },
+      { title: "PBM", dataIndex: "PBM", key: "PBM", width: "8%" },
       {
         title: "Departamento de procedencia",
         dataIndex: "Procedencia",
@@ -28,15 +27,21 @@ class CaseTable extends React.Component {
         width: "15%"
       },
       {
+        title: "¿Se encuentra en Bogotá?",
+        dataIndex: "Bogota",
+        key: "Bogota",
+        width: "12%"
+      },
+      {
         title: "Tipo de apoyo solicitado",
         dataIndex: "Apoyo",
         key: "Apoyo",
-        width: "20%"
+        width: "15%"
       },
       {
         title: "Justificación",
         key: "Justification",
-        width: "9%",
+        width: "14%",
         render: (text, record) => (
           <span>
             {/* eslint-disable-next-line */}
@@ -77,7 +82,7 @@ class CaseTable extends React.Component {
                   okText: "Sí",
                   okType: "primary",
                   cancelText: "No",
-                  onOk() {
+                  async onOk() {
                     updateD();
                     const key = "updatable";
                     message.success(
@@ -88,10 +93,10 @@ class CaseTable extends React.Component {
                       },
                       20
                     );
-                    push();
-                    Backend.sendRequest("POST", "sponsor", {
+                    await Backend.sendRequest("POST", "sponsor", {
                       request_id: record.request_id
                     });
+                    push();
                   },
                   onCancel() {}
                 });
