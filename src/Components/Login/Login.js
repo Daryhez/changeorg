@@ -18,6 +18,13 @@ const { Title, Text } = Typography;
 class NormalLoginForm extends React.Component {
   constructor(props) {
     super(props);
+    Backend.sendRequest("GET", "valid")
+      .then(r => r.json())
+      .then(r => {
+        if (r.valid === "yes") {
+          this.props.history.push("/home");
+        }
+      });
     this.state = {
       username: "",
       password: ""

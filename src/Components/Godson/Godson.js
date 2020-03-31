@@ -16,6 +16,8 @@ class Godson extends Component {
       .then(r => {
         if (r.valid === "no") {
           this.props.history.push("/");
+          localStorage.removeItem("jwt");
+          window.location.reload();
         }
       });
   }
