@@ -9,7 +9,7 @@ import {
   LoginWelcome,
   FormLink,
   StyledRow,
-  StyledCol
+  StyledCol,
 } from "./LoginStyled";
 import Backend from "../../serviceBackend";
 
@@ -19,19 +19,19 @@ class NormalLoginForm extends React.Component {
   constructor(props) {
     super(props);
     Backend.sendRequest("GET", "valid")
-      .then(r => r.json())
-      .then(r => {
+      .then((r) => r.json())
+      .then((r) => {
         if (r.valid === "yes") {
           this.props.history.push("/home");
         }
       });
     this.state = {
       username: "",
-      password: ""
+      password: "",
     };
   }
   infocase;
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
@@ -45,16 +45,34 @@ class NormalLoginForm extends React.Component {
     message.loading({ content: "Iniciando sesión", key });
     let err = ["Unauthorized, not proffesor.", "Wrong user or password"];
     Backend.sendLogin(this.state.username, this.state.password)
-      .then(async response => {
+      .then(async (response) => {
         if (response.status === 401) {
           let res = await response.json();
           if (res.error === err[0]) {
             message.error({ content: "Acceso restringido", key });
             Modal.info({
-              title: 'Acceso restringido',
+              title: "Acceso restringido",
               content: (
                 <div>
-                  <p>Por favor, envíe una petición a través de contáctenos.</p>
+                  <p>
+                    Usted esta intentando ingresar al portal de Docentes de
+                    apadrinamiento, por favor verifique:
+                  </p>
+                  <ol>
+                    <li>
+                      Que ingresó de forma acertada su nombre de usuario y
+                      contraseña del correo UNAL
+                    </li>
+                    <li>Que el usuario no contiene al final @unal.edu.co</li>
+                    <li>Que es Docente activo de la Facultad de Ingeniería</li>
+                  </ol>
+                  <p>
+                    <Text style={{ fontWeight: "bold" }}>Nota:</Text> En caso de
+                    ser Egresado de la Facultad o Docente Activo con problemas
+                    de acceso al sistema y querer apadrinar a un estudiante Por
+                    favor, envíe una petición a través de la pestaña:
+                    “Contáctenos” solicitando acceso al sistema.
+                  </p>
                 </div>
               ),
               onOk() {},
@@ -70,15 +88,15 @@ class NormalLoginForm extends React.Component {
         } else {
           message.error({
             content: "Error en Login",
-            key
+            key,
           });
           console.log("Login Error: Backend HTTP code " + response.status);
         }
       })
-      .catch(error => {
+      .catch((error) => {
         message.error({
           content: "Error en Login",
-          key
+          key,
         });
         console.log("Login Error: " + error);
       });
@@ -98,7 +116,10 @@ class NormalLoginForm extends React.Component {
           <StyledCol>
             <LoginGeneral>
               <LoginWelcome>
-                <Title>Ingreso docente al portal UN Apoyo de Ingeniería</Title>
+                <Title>
+                  Ingreso <Text style={{ color: "#EC6607" }}>docente</Text> al
+                  portal UN Apoyo de Ingeniería
+                </Title>
                 <p>
                   <Text>
                     Bienvenido al portal de apoyos para estudiantes activos de
@@ -113,9 +134,9 @@ class NormalLoginForm extends React.Component {
                     rules: [
                       {
                         required: true,
-                        message: "Por favor, ingrese su usuario."
-                      }
-                    ]
+                        message: "Por favor, ingrese su usuario.",
+                      },
+                    ],
                   })(
                     <Input
                       prefix={
@@ -125,7 +146,7 @@ class NormalLoginForm extends React.Component {
                         />
                       }
                       placeholder="Usuario SIA"
-                      onChange={text => {
+                      onChange={(text) => {
                         this.setState({ username: text.target.value });
                       }}
                     />
@@ -136,9 +157,9 @@ class NormalLoginForm extends React.Component {
                     rules: [
                       {
                         required: true,
-                        message: "Por favor, ingrese su contraseña."
-                      }
-                    ]
+                        message: "Por favor, ingrese su contraseña.",
+                      },
+                    ],
                   })(
                     <Input
                       prefix={
@@ -149,7 +170,7 @@ class NormalLoginForm extends React.Component {
                       }
                       type="password"
                       placeholder="Contraseña"
-                      onChange={text => {
+                      onChange={(text) => {
                         this.setState({ password: text.target.value });
                       }}
                     />
@@ -175,7 +196,8 @@ class NormalLoginForm extends React.Component {
             <LoginGeneral>
               <LoginWelcome>
                 <Title>
-                  Ingreso estudiante al portal UN Apoyo de Ingeniería
+                  Ingreso <Text style={{ color: "#EC6607" }}>estudiante</Text>{" "}
+                  al portal UN Apoyo de Ingeniería
                 </Title>
                 <p>
                   <Text>
